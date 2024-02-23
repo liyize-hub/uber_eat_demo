@@ -20,7 +20,7 @@ function addEmployee (params) {
   return $axios({
     url: '/employee',
     method: 'post',
-    data: { ...params }
+    data: { ...params } // 创建一个新的对象，并将params对象中的所有属性复制到新对象中
   })
 }
 
