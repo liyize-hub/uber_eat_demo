@@ -23,7 +23,7 @@ service --业务层代码
 2. 后台退出功能开发
    post 127.0.0.1:8081/employee/logout
 
-# Day02
+# Day02 员工管理功能开发
 
 1. 完善登陆功能
    过滤不需要处理的页面，使未登录用户不能查看信息
@@ -48,3 +48,25 @@ JS 对 Long 型数据处理丢失精度（只能处理 16 位）；将 long 型�
 5. 编辑员工信息
    get 127.0.0.1:8081/employee/{id}
    put 127.0.0.1:8081/employee
+
+# Day03 分类管理功能开发
+
+1. 公共字段自动填充
+   @TableField：指定自动填充的策略
+   @Component MetaObjectHandler，用于处理实体类中的元对象（MetaObject）的默认值、填充值等操作
+   通过 TreadLocal 获取数据: 线程的局部变量，为每个线程单独提供一份存储空间
+
+2. 新增分类
+   菜品分类，套餐分类
+   post 127.0.0.1:8081/category
+
+3. 分类信息分类查询
+   get 127.0.0.1:8081/category/page
+
+4. 删除分类
+   当分类关联了菜品或者套餐时，此分类不允许删除
+   delete 127.0.0.1:8081/category
+   自定义业务异常 CustomExeption
+
+5. 修改分类
+   put 127.0.0.1:8081/category

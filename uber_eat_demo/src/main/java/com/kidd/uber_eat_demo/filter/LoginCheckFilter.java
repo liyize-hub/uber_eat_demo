@@ -10,11 +10,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.util.AntPathMatcher;
 
 import com.alibaba.fastjson.JSON;
+import com.kidd.uber_eat_demo.common.BaseContext;
 import com.kidd.uber_eat_demo.common.R;
 
 import lombok.extern.slf4j.Slf4j;
@@ -58,9 +57,14 @@ public class LoginCheckFilter implements Filter {
         }
 
         // 4、判断登录状态，如果已登录，则直接放行
+        // 获取当前用户id放入TreadLocal中
+        BaseContext.setCurrentId((Long) request.getSession().getAttribute("employee"));
 
         if (request.getSession().getAttribute("employee") != null) {
             log.info("用户已登录，用户id为：{}", request.getSession().getAttribute("employee"));
+
+            // Long id = Thread.currentThread().getId();
+            // log.info("线程id为：{}", id);
 
             filterChain.doFilter(request, response);
             return;
