@@ -1,11 +1,12 @@
 package com.kidd.uber_eat_demo.controller;
 
-import javax.websocket.server.PathParam;
+import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +19,7 @@ import com.kidd.uber_eat_demo.entity.Category;
 import com.kidd.uber_eat_demo.service.CategoryService;
 
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @RestController
@@ -75,7 +73,6 @@ public class CategoryController {
      * @return
      */
     @DeleteMapping
-    // 如果不使用 @RequestBody 来接收请求体中的参数，而是直接通过方法参数来接收参数，那么前后端的参数名称必须一致
     public R<String> delete(Long id) {
         log.info("删除分类，id为：{}", id);
 
@@ -85,12 +82,16 @@ public class CategoryController {
         return R.success("分类信息删除成功");
     }
 
-    @PutMapping
-    public R<String> update(@RequestBody Category category) {
-        log.info("修改分类信息：", category.toString());
+    @GetMapping("/list")
+    public R<List<Category>> list(Category category) {
+        // 条件构造器
+        LambdaQueryWrapper<Category> queryWrapper = Wrappers.lambdaQuery(Category.class);
+        // 添加条件
+        queryWrapper.eq(category.getType() != null, Category::getType, category.getType());
+        // 添加排序条件
+        queryWrapper.orderByAsc(Category::getSort).orderByDesc(Category::getUpdateTime);
 
-        categoryService.updateById(category);
-        return R.success("分类信息修改成功");
+        return R.success(categoryService.list(queryWrapper));
     }
 
 }
