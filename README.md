@@ -70,3 +70,40 @@ JS 对 Long 型数据处理丢失精度（只能处理 16 位）；将 long 型�
 
 5. 修改分类
    put 127.0.0.1:8081/category
+
+# Day04 菜品管理业务开发
+
+1. 文件上传下载
+
+   - 上传：form 表单：
+     表单属性 取值 说明
+     method post 必须选择 post 方式提交
+     enctype multipart/form-data 采用 multipart 格式上传文件
+     type file 使用 input 的 file 控件上传
+
+   使用的是 Apache 的两个组件：commons-fileupload,commons-io
+   文件上传的解析器: CommonsMultipartResolver
+   Spring 框架在 spring-web 包中对文件上传进行了封装，大大简化了服务端代码，我们只需要在 Controller 的方法中声明一个 MultipartFile 类型的参数即可接收上传的文件
+
+   - 下载：在浏览器中打开（服务端将文件以输出流的形式写回浏览器）；以附件的形式下载
+     post 127.0.0.1:8081/common/upload
+     get 127.0.0.1:8081/common/download
+
+2. 菜品新增
+   post 127.0.0.1:8081/dish
+   自定义一个实体类，然后继承自 Dish，并对 Dish 的属性进行拓展，增加 flavors 集合属性
+
+3. 菜品分页查询
+   get 127.0.0.1:8081/dish/page
+   需要查 category 表导入 category 的 Name
+
+4. 菜品修改
+   get 127.0.0.1:8081/dish/${id}
+   put 127.0.0.1:8081/dish
+
+5. 菜品禁用启用
+   post 127.0.0.1:8081/dish/status/${params.status}
+
+6. 菜品删除
+   批量删除+需要删除 dish_flavor 中的相关字段
+   delete 127.0.0.1:8081/dish

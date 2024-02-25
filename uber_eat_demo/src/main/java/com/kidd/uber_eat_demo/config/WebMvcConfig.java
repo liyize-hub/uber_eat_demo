@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -45,5 +44,18 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         // 将上面的消息转换器对象追加到mvc框架的转换器集合中, 优先级为第一位
         converters.add(0, messageConverter);
     }
+
+    // // bean的name一定要是：multipartResolver
+    // // 要么 @Bean("multipartResolver") 注解中指定名字
+    // // 要么方法的名字为：multipartResolver
+    // @Bean("multipartResolver")
+    // public CommonsMultipartResolver CommonsMultipartResolver() {
+    // CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+    // // 最大的上传文件尺寸 50M
+    // cmr.setMaxUploadSize(1024 * 1024 * 50);
+    // // 每个的上传文件尺寸 10
+    // cmr.setMaxUploadSizePerFile(1024 * 1024 * 10);
+    // return cmr;
+    // }
 
 }
