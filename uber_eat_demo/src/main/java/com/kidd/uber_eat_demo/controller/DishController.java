@@ -70,7 +70,7 @@ public class DishController {
      * @return
      */
     @GetMapping("/page")
-    public R<Page> page(int page, int pageSize, String name) {
+    public R<Page<DishDto>> page(int page, int pageSize, String name) {
 
         log.info("page = {},pageSize = {},name = {}", page, pageSize, name);
 
@@ -127,6 +127,27 @@ public class DishController {
     }
 
     /**
+     * 根据条件查询对应的菜品数据
+     * 
+     * @param param
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<Dish>> list(Dish dish) {
+        log.info("dish:{}", dish);
+        // 条件构造器
+        LambdaQueryWrapper<Dish> queryWrapper = Wrappers.lambdaQuery(Dish.class);
+        queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
+        // 添加条件，查询状态为1（起售状态）的菜品
+        queryWrapper.eq(Dish::getStatus, 1);
+        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> dishList = dishService.list(queryWrapper);
+
+        return R.success(dishList);
+    }
+
+    /**
      * 修改菜品
      * 
      * @param dishDto
@@ -138,7 +159,7 @@ public class DishController {
 
         dishService.updateWithFlavor(dishDto);
 
-        return R.success("新增菜品成功");
+        return R.success("修改菜品成功");
     }
 
     /**
@@ -168,7 +189,6 @@ public class DishController {
 
     /**
      * 菜品删除
-     * Mybatis+sql
      * 
      * @param ids
      * @return

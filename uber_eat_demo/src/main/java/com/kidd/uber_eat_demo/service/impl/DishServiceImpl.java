@@ -19,9 +19,11 @@ import com.kidd.uber_eat_demo.common.CustomException;
 import com.kidd.uber_eat_demo.dto.DishDto;
 import com.kidd.uber_eat_demo.entity.Dish;
 import com.kidd.uber_eat_demo.entity.DishFlavor;
+import com.kidd.uber_eat_demo.entity.SetmealDish;
 import com.kidd.uber_eat_demo.mapper.DishMapper;
 import com.kidd.uber_eat_demo.service.DishFlavorService;
 import com.kidd.uber_eat_demo.service.DishService;
+import com.kidd.uber_eat_demo.service.SetmealDishService;
 
 @Service
 public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements DishService {
@@ -31,6 +33,9 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
 
     @Autowired
     private DishMapper dishMapper;
+
+    @Autowired
+    private SetmealDishService setmealDishService;
 
     /**
      * 新增菜品，同时保存对应的口味数据
@@ -69,6 +74,7 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
      * @return
      */
     @Override
+    @Transactional
     public DishDto getByIdWithFlavor(Long id) {
         // 查询菜品基本信息，从dish表查询
         Dish dish = this.getById(id);
@@ -121,6 +127,7 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
     }
 
     @Override
+    @Transactional
     public boolean removeByIdsWithFlavors(List<Long> ids) {
         // 先判断是否在售，如果在售不能删除
         List<Dish> list = this.listByIds(ids);
@@ -130,17 +137,18 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
             }
         }
 
-        // // 再次判断是否在套餐中，是否是，则删除不了，如果不在可以删除？
-        // LambdaQueryWrapper<SetmealDish> smdlqw = new LambdaQueryWrapper<>();
-        // smdlqw.in(SetmealDish::getDishId, ids);
-        // int count = setmealDishService.count(smdlqw);
-        // if (count > 0) {
-        // throw new CustomException("此菜品在套餐中，不能删除;");
-        // }
+        // 再次判断是否在套餐中，是否是，则删除不了，如果不在可以删除？
+        LambdaQueryWrapper<SetmealDish> setmealDishqw = new LambdaQueryWrapper<>();
+        setmealDishqw.in(SetmealDish::getDishId, ids);
+        int count = setmealDishService.count(setmealDishqw);
+        if (count > 0) {
+            throw new CustomException("此菜品在套餐中，不能删除;");
+        }
 
         // 先删除菜品基本信息
         boolean flag1 = this.removeByIds(ids);
 
+        // 再删除关系表中的数据 -- dish_flavor
         LambdaQueryWrapper<DishFlavor> dishFlavorQueryWrapper = Wrappers.lambdaQuery();
         dishFlavorQueryWrapper.in(DishFlavor::getDishId, ids);
         boolean flag2 = dishFlavorService.remove(dishFlavorQueryWrapper);
