@@ -26,6 +26,7 @@ const editSetmeal = (params) => {
 }
 
 // 新增数据接口
+// post 才用 data: { ...params } get不用，以键值对形式进行传输
 const addSetmeal = (params) => {
   return $axios({
     url: '/setmeal',

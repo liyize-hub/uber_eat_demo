@@ -11,8 +11,12 @@ import java.time.LocalDateTime;
  * 套餐
  */
 @Data
+// Serializable 标识了一个类的对象可以被序列化，即可以将对象转换成字节流，从而可以在网络上传输或者保存到文件中
 public class Setmeal implements Serializable {
 
+    // 是 Java 中用于版本控制的一个特殊字段，它是一个
+    // long 类型的常量，用于标识序列化类的版本号
+    // 即使类的其他部分发生了变化，版本号仍然保持不变，就可以确保序列化和反序列化的兼容性
     private static final long serialVersionUID = 1L;
 
     private Long id;

@@ -107,3 +107,21 @@ JS 对 Long 型数据处理丢失精度（只能处理 16 位）；将 long 型�
 6. 菜品删除
    批量删除+需要删除 dish_flavor 中的相关字段
    delete 127.0.0.1:8081/dish
+
+# Day 05 套餐管理业务开发
+
+1. 新增套餐
+   根据菜品分类 ID,查询菜品列表
+   get 127.0.0.1:8081/dish/list?categoryId = xxx
+   保存套餐信息
+   post 127.0.0.1:8081/setmeal
+
+2. 套餐信息分页查询
+   get 127.0.0.1:8081/setmeal/page
+   需要查 category 表导入 category 的 Name
+
+3. 删除套餐
+
+4. 短信发送
+
+5. 手机验证码登录
