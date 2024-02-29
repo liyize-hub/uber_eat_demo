@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kidd.uber_eat_demo.common.R;
-import com.kidd.uber_eat_demo.dto.DishDto;
 import com.kidd.uber_eat_demo.dto.SetmealDto;
-import com.kidd.uber_eat_demo.entity.Dish;
 import com.kidd.uber_eat_demo.entity.Setmeal;
 import com.kidd.uber_eat_demo.service.SetmealDishService;
 import com.kidd.uber_eat_demo.service.SetmealService;
@@ -131,6 +131,23 @@ public class SetmealController {
         log.info("需要删除的套餐的ids：{}", ids);
         boolean flag = setmealService.removeByIdsWithDishes(ids);
         return flag ? R.success("删除成功") : R.error("删除失败");
+    }
+
+    /**
+     * 根据条件查询套餐数据
+     * 
+     * @param setmeal
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<Setmeal>> list(Setmeal setmeal) {
+
+        LambdaQueryWrapper<Setmeal> queryWrapper = Wrappers.lambdaQuery(Setmeal.class);
+        queryWrapper.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId())
+                .eq(setmeal.getStatus() != null, Setmeal::getStatus, setmeal.getStatus())
+                .orderByDesc(Setmeal::getUpdateTime);
+
+        return R.success(setmealService.list(queryWrapper));
     }
 
 }

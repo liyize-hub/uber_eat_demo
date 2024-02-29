@@ -17,10 +17,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kidd.uber_eat_demo.common.CustomException;
 import com.kidd.uber_eat_demo.dto.DishDto;
+import com.kidd.uber_eat_demo.entity.Category;
 import com.kidd.uber_eat_demo.entity.Dish;
 import com.kidd.uber_eat_demo.entity.DishFlavor;
 import com.kidd.uber_eat_demo.entity.SetmealDish;
 import com.kidd.uber_eat_demo.mapper.DishMapper;
+import com.kidd.uber_eat_demo.service.CategoryService;
 import com.kidd.uber_eat_demo.service.DishFlavorService;
 import com.kidd.uber_eat_demo.service.DishService;
 import com.kidd.uber_eat_demo.service.SetmealDishService;
@@ -36,6 +38,9 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
 
     @Autowired
     private SetmealDishService setmealDishService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 新增菜品，同时保存对应的口味数据
@@ -154,6 +159,39 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
         boolean flag2 = dishFlavorService.remove(dishFlavorQueryWrapper);
 
         return flag1 && flag2;
+    }
+
+    @Override
+    @Transactional
+    public List<DishDto> getFullList(Dish dish) {
+        Long categoryId = dish.getCategoryId();
+        LambdaQueryWrapper<Dish> queryWrapper = Wrappers.lambdaQuery(Dish.class);
+        queryWrapper.eq(categoryId != null, Dish::getCategoryId, categoryId)
+                .eq(Dish::getStatus, 1)
+                .orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> list = this.list(queryWrapper);
+
+        List<DishDto> dishDtoList = list.stream().map((item) -> {
+            DishDto dishDto = new DishDto();
+            BeanUtils.copyProperties(item, dishDto);
+
+            Category category = categoryService.getById(item.getCategoryId());
+            if (category != null) {
+                dishDto.setCategoryName(category.getName());
+            }
+
+            LambdaQueryWrapper<DishFlavor> flavorQueryWrapper = Wrappers.lambdaQuery(DishFlavor.class);
+            flavorQueryWrapper.eq(DishFlavor::getDishId, dishDto.getId());
+            // SQL:select * from dish_flavor where dish_id = ?
+            dishDto.setFlavors(dishFlavorService.list(flavorQueryWrapper));
+
+            return dishDto;
+
+        }).collect(Collectors.toList());
+
+        return dishDtoList;
+
     }
 
 }
