@@ -121,7 +121,20 @@ JS 对 Long 型数据处理丢失精度（只能处理 16 位）；将 long 型�
    需要查 category 表导入 category 的 Name
 
 3. 删除套餐
+   delete 127.0.0.1:8081/setmeal
 
 4. 短信发送
+   post 127.0.0.1:8081/user/setMsg
 
 5. 手机验证码登录
+   post 127.0.0.1:8081/user/login
+
+# Day 06 菜品展示/购物车/下单
+
+1. 用户地址簿功能
+
+2. 菜品展示
+
+3. 购物车
+
+4. 下单

@@ -128,23 +128,25 @@ public class DishController {
 
     /**
      * 根据条件查询对应的菜品数据
+     * mybatis+sql
      * 
      * @param param
      * @return
      */
     @GetMapping("/list")
-    public R<List<Dish>> list(Dish dish) {
+    public R<List<DishDto>> list(Dish dish) {
         log.info("dish:{}", dish);
-        // 条件构造器
-        LambdaQueryWrapper<Dish> queryWrapper = Wrappers.lambdaQuery(Dish.class);
-        queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
-        // 添加条件，查询状态为1（起售状态）的菜品
-        queryWrapper.eq(Dish::getStatus, 1);
-        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+        // // 条件构造器
+        // LambdaQueryWrapper<Dish> queryWrapper = Wrappers.lambdaQuery(Dish.class);
+        // queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId,
+        // dish.getCategoryId());
+        // // 添加条件，查询状态为1（起售状态）的菜品
+        // queryWrapper.eq(Dish::getStatus, 1);
+        // queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
 
-        List<Dish> dishList = dishService.list(queryWrapper);
+        // List<Dish> dishList = dishService.list(queryWrapper);
 
-        return R.success(dishList);
+        return R.success(dishService.getFullList(dish));
     }
 
     /**

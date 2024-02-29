@@ -27,4 +27,6 @@ public interface DishService extends IService<Dish> {
     // 删除菜品，需要批量删除，需要删除dish_flavor中的相关字段
     boolean removeByIdsWithFlavors(List<Long> ids);
 
+    List<DishDto> getFullList(Dish dish);
+
 }
