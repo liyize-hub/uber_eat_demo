@@ -158,10 +158,11 @@ JS 对 Long 型数据处理丢失精度（只能处理 16 位）；将 long 型�
 Spring Cache 是一个框架，实现了基于注解的缓存功能 ，只需要简单地加一个注解，就能实现缓存功能，大大简化我们在业务中操作缓存的代码。
 Spring Cache 只是提供了一层抽象，底层可以切换不同的 cache 实现。具体就是通过 CacheManager 接口 来统一不同的缓存技术。CacheManager 是 Spring 提供的各种缓存技术抽象接口。
 
-CacheManager ｜ 描述
-EhCacheCacheManager ｜ 使用 EhCache 作为缓存技术
-GuavaCacheManager ｜ 使用 Google 的 GuavaCache 作为缓存技术
-RedisCacheManager ｜ 使用 Redis 作为缓存技术
+｜ CacheManager ｜ 描述 ｜
+| ------- | ------- ｜
+｜ EhCacheCacheManager ｜ 使用 EhCache 作为缓存技术｜
+｜ GuavaCacheManager ｜ 使用 Google 的 GuavaCache 作为缓存技术｜
+｜ RedisCacheManager ｜ 使用 Redis 作为缓存技术｜
 
 @EnableCaching 开启缓存注解功能
 @Cacheable 在方法执行前 spring 先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中
@@ -169,3 +170,14 @@ RedisCacheManager ｜ 使用 Redis 作为缓存技术
 @CacheEvict 将一条或多条数据从缓存中删除
 
 套餐数据使用 spring cache 进行保存
+
+# Day 02 读写分离/nginx 代理
+
+主库：事务性增删改 写
+从库：查询 读
+
+Sharding-JDBC 以 jar 包形式提供服务，增强版 JDBC 驱动
+支持任何第三方数据库连接池：Druid
+
+nginx
+反向代理/负载均衡/部署静态资源
