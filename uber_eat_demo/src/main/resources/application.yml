@@ -1,0 +1,48 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: uber_eat_demo #应用的名称，可选
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/reggie?serverTimezone=America/New_York&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+  #Redis相关配置
+  redis:
+    host: localhost
+    port: 6379
+    #password: 123456
+    database: 0 #操作的是0号数据库
+    # jedis:
+    #   #Redis连接池配置
+    #   pool:
+    #     max-active: 8 #最大连接数
+    #     max-wait: 1ms #连接池最大阻塞等待时间
+    #     max-idle: 4 #连接池中的最大空闲连接
+    #     min-idle: 0 #连接池中的最小空闲连接
+
+  cache:
+    redis: # 配置相应的缓存提供者。
+      time-to-live: 1800000 # 设置缓存过期时间 30分钟
+
+mybatis-plus:
+  #配置项用于配置 MyBatis 的全局配置
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    #指定 MyBatis 使用的日志实现，表示日志输出将打印到控制台
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #配置 MyBatis Plus 的全局参数
+  global-config:
+    db-config:
+      #表示采用手动分配的方式来指定主键值。这通常与 MyBatis Plus 提供的主键生成策略配合使用
+      id-type: ASSIGN_ID
+      # logic-delete-field: isDeleted # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      # logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      # logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+uber_eat:
+  Path: /Users/kiddli/Library/Mobile Documents/com~apple~CloudDocs/Job/Project/java项目/uber_eat_demo/uber_eat_demo/src/main/resources/static/
