@@ -15,6 +15,9 @@ public class MybatisPlusConfig {
 
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        // MybatisPlusInterceptor 用于拦截 MyBatis 的 SQL 执行过程，并在执行前后进行一些处理。
+        // 它是 MyBatis-Plus 中的核心组件之一，可以用于扩展 MyBatis 的功能，
+        // 实现诸如 SQL 拦截、SQL 注入、性能分析等功能
         MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
         // PaginationInnerInterceptor 是 MyBatis-Plus 提供的一个内置拦截器，
         // 用于在查询中自动添加分页信息，简化分页查询的处理
