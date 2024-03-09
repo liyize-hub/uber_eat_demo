@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -12,14 +14,19 @@ import lombok.Data;
  * @param <T>
  */
 @Data
+@ApiModel("返回结果")
 public class R<T> implements Serializable { // 实现序列化接口
 
+    @ApiModelProperty("编码")
     private Integer code; // 编码：1成功，0和其它数字为失败
 
+    @ApiModelProperty("错误信息")
     private String msg; // 错误信息
 
+    @ApiModelProperty("数据")
     private T data; // 数据
 
+    @ApiModelProperty("动态数据")
     private Map map = new HashMap(); // 动态数据
 
     public static <T> R<T> success(T object) {

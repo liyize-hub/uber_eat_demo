@@ -181,3 +181,25 @@ Sharding-JDBC 以 jar 包形式提供服务，增强版 JDBC 驱动
 
 nginx
 反向代理/负载均衡/部署静态资源
+
+# Day 03 前后端分离开发
+
+A. Node.js: Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。(类似于 java 语言中的 JDK)。
+B. Vue : 目前最火的的一个前端 javaScript 框架。
+C. ElementUI: 一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库，通过 ElementUI 组件可以快速构建项目页面。
+D. Mock: 生成随机数据，拦截 Ajax 请求，前端可以借助于 Mock 生成测试数据进行功能测试。
+E. Webpack: webpack 是一个现代 JavaScript 应用程序的模块打包器(module bundler)，分析你的项目结构，找到 JavaScript 模块以及其它的一些浏览器不能直接运行的拓展语言（Sass，TypeScript 等），并将其转换和打包为合适的格式供浏览器使用。
+
+YApi: api 管理平台
+源码地址: https://github.com/YMFE/yapi
+官方文档: https://hellosean1025.github.io/yapi/
+要使用 YApiYApi 使用教程，项目组需要自己进行部署
+postman
+要使用 YApi,项目组需要自己进行部署，因此也可以使用 Apifox(Api 文档，Api 调试，Api Mock，Api 自动化测试)
+
+Swagger
+https://swagger.io/
+
+knife4j：为 Java MVC 框架集成 Swagger 生成 Api 文档的增强解决方案。
+
+项目部署
