@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.kidd.uber_eat_demo.dto.DishDto;
-import com.kidd.uber_eat_demo.entity.Dish;
+import com.kidd.uber_eat_demo.model.dto.DishDto;
+import com.kidd.uber_eat_demo.model.entity.Dish;
 
 @Service
 public interface DishService extends IService<Dish> {

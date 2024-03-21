@@ -1,4 +1,4 @@
-package com.kidd.uber_eat_demo.entity;
+package com.kidd.uber_eat_demo.model.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

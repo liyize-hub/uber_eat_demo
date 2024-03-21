@@ -1,4 +1,4 @@
-package com.kidd.uber_eat_demo.entity;
+package com.kidd.uber_eat_demo.model.entity;
 
 import lombok.Data;
 import java.time.LocalDateTime;

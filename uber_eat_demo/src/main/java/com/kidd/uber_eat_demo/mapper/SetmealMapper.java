@@ -4,8 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kidd.uber_eat_demo.dto.SetmealDto;
-import com.kidd.uber_eat_demo.entity.Setmeal;
+import com.kidd.uber_eat_demo.model.dto.SetmealDto;
+import com.kidd.uber_eat_demo.model.entity.Setmeal;
 
 @Mapper
 public interface SetmealMapper extends BaseMapper<Setmeal> {

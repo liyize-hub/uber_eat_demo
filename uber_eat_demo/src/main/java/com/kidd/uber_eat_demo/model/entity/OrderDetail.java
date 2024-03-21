@@ -1,16 +1,15 @@
-package com.kidd.uber_eat_demo.entity;
+package com.kidd.uber_eat_demo.model.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import lombok.Data;
 
 /**
- * 购物车
+ * 订单明细
  */
 @Data
-public class ShoppingCart implements Serializable {
+public class OrderDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,8 +18,8 @@ public class ShoppingCart implements Serializable {
     // 名称
     private String name;
 
-    // 用户id
-    private Long userId;
+    // 订单id
+    private Long orderId;
 
     // 菜品id
     private Long dishId;
@@ -39,6 +38,4 @@ public class ShoppingCart implements Serializable {
 
     // 图片
     private String image;
-
-    private LocalDateTime createTime;
 }

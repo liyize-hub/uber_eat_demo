@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kidd.uber_eat_demo.common.R;
-import com.kidd.uber_eat_demo.entity.User;
+import com.kidd.uber_eat_demo.model.entity.User;
 import com.kidd.uber_eat_demo.service.UserService;
 import com.kidd.uber_eat_demo.utils.SMSUtils;
 import com.kidd.uber_eat_demo.utils.ValidateCodeUtils;

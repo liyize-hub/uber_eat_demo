@@ -18,9 +18,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kidd.uber_eat_demo.common.BaseContext;
 import com.kidd.uber_eat_demo.common.R;
-import com.kidd.uber_eat_demo.dto.OrderDto;
-import com.kidd.uber_eat_demo.entity.OrderDetail;
-import com.kidd.uber_eat_demo.entity.Orders;
+import com.kidd.uber_eat_demo.model.dto.OrderDto;
+import com.kidd.uber_eat_demo.model.entity.OrderDetail;
+import com.kidd.uber_eat_demo.model.entity.Orders;
 import com.kidd.uber_eat_demo.service.OrderDetailService;
 import com.kidd.uber_eat_demo.service.OrderService;
 
