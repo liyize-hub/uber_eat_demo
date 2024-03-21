@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.kidd.uber_eat_demo.UberEatDemoApplication;
-import com.kidd.uber_eat_demo.entity.User;
+import com.kidd.uber_eat_demo.model.entity.User;
 import com.kidd.uber_eat_demo.service.UserService;
 
 @SpringBootTest(classes = UberEatDemoApplication.class)

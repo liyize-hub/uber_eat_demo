@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.kidd.uber_eat_demo.dto.DishDto;
-import com.kidd.uber_eat_demo.dto.SetmealDto;
-import com.kidd.uber_eat_demo.entity.Setmeal;
+import com.kidd.uber_eat_demo.model.dto.DishDto;
+import com.kidd.uber_eat_demo.model.dto.SetmealDto;
+import com.kidd.uber_eat_demo.model.entity.Setmeal;
 
 @Service
 public interface SetmealService extends IService<Setmeal> {

@@ -38,6 +38,7 @@ public class JacksonObjectMapper extends ObjectMapper {
                 this.getDeserializationConfig().withoutFeatures(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
                 SimpleModule simpleModule = new SimpleModule() // 添加序列化器
+                                // 反序列化器：json->java
                                 .addDeserializer(LocalDateTime.class,
                                                 new LocalDateTimeDeserializer(
                                                                 DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_FORMAT)))
@@ -48,6 +49,7 @@ public class JacksonObjectMapper extends ObjectMapper {
                                                 new LocalTimeDeserializer(
                                                                 DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT)))
 
+                                // 序列化器：java ->json
                                 .addSerializer(BigInteger.class, ToStringSerializer.instance)
                                 .addSerializer(Long.class, ToStringSerializer.instance) // Long --> String
                                 // 时间转换

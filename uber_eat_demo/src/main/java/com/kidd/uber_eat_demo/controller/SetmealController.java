@@ -21,8 +21,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kidd.uber_eat_demo.common.R;
-import com.kidd.uber_eat_demo.dto.SetmealDto;
-import com.kidd.uber_eat_demo.entity.Setmeal;
+import com.kidd.uber_eat_demo.model.dto.SetmealDto;
+import com.kidd.uber_eat_demo.model.entity.Setmeal;
 import com.kidd.uber_eat_demo.service.SetmealDishService;
 import com.kidd.uber_eat_demo.service.SetmealService;
 

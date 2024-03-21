@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kidd.uber_eat_demo.common.BaseContext;
 import com.kidd.uber_eat_demo.common.R;
-import com.kidd.uber_eat_demo.entity.AddressBook;
+import com.kidd.uber_eat_demo.model.entity.AddressBook;
 import com.kidd.uber_eat_demo.service.AddressBookService;
 
 import lombok.extern.slf4j.Slf4j;

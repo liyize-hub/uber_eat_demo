@@ -14,7 +14,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kidd.uber_eat_demo.common.R;
-import com.kidd.uber_eat_demo.entity.Category;
+import com.kidd.uber_eat_demo.model.entity.Category;
 import com.kidd.uber_eat_demo.service.CategoryService;
 
 import lombok.extern.slf4j.Slf4j;

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kidd.uber_eat_demo.common.R;
-import com.kidd.uber_eat_demo.dto.DishDto;
-import com.kidd.uber_eat_demo.entity.Dish;
+import com.kidd.uber_eat_demo.model.dto.DishDto;
+import com.kidd.uber_eat_demo.model.entity.Dish;
 import com.kidd.uber_eat_demo.service.CategoryService;
 import com.kidd.uber_eat_demo.service.DishFlavorService;
 import com.kidd.uber_eat_demo.service.DishService;

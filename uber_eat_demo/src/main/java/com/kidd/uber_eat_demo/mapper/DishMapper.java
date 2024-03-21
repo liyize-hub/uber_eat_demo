@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kidd.uber_eat_demo.dto.DishDto;
-import com.kidd.uber_eat_demo.entity.Dish;
+import com.kidd.uber_eat_demo.model.dto.DishDto;
+import com.kidd.uber_eat_demo.model.entity.Dish;
 
 @Mapper
 public interface DishMapper extends BaseMapper<Dish> {

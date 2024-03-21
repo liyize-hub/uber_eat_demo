@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kidd.uber_eat_demo.common.BaseContext;
 import com.kidd.uber_eat_demo.common.CustomException;
-import com.kidd.uber_eat_demo.entity.ShoppingCart;
 import com.kidd.uber_eat_demo.mapper.ShoppingCartMapper;
+import com.kidd.uber_eat_demo.model.entity.ShoppingCart;
 import com.kidd.uber_eat_demo.service.ShoppingCartService;
 
 import lombok.extern.slf4j.Slf4j;

@@ -39,7 +39,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- mybatispuls 起步依赖 -->
+		<!-- mybatisplus 起步依赖 -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
