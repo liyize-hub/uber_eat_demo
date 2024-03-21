@@ -4,9 +4,9 @@
 
 
     <!-- pageDishDto -->
-    <select id="pageDishDto" resultType="com.kidd.uber_eat_demo.dto.DishDto"> SELECT setmeal.*,
-        category.name AS category_name FROM setmeal LEFT JOIN category ON setmeal.category_id =
-        category.id <where>
+    <select id="pageDishDto" resultType="com.kidd.uber_eat_demo.model.dto.DishDto"> SELECT
+        setmeal.*, category.name AS category_name FROM setmeal LEFT JOIN category ON
+        setmeal.category_id = category.id <where>
             <if test="name != null and name != ''"> setmeal.name LIKE CONCAT('%', #{name}, '%') </if>
         </where>
         ORDER BY setmeal.update_time DESC </select>

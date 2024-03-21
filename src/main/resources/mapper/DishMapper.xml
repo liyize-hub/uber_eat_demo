@@ -3,7 +3,7 @@
 <mapper namespace="com.kidd.uber_eat_demo.mapper.DishMapper">
 
     <!-- pageDishDto -->
-    <select id="pageDishDto" resultType="com.kidd.uber_eat_demo.dto.DishDto"> SELECT dish.*,
+    <select id="pageDishDto" resultType="com.kidd.uber_eat_demo.model.dto.DishDto"> SELECT dish.*,
         category.name AS category_name FROM dish LEFT JOIN category ON dish.category_id =
         category.id <where>
             <if test="name != null and name != ''"> dish.name LIKE CONCAT('%', #{name}, '%') </if>
